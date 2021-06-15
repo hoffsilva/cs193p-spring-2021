@@ -20,29 +20,38 @@ struct ContentView: View {
                     CardView(content: emoji)
                 }
             }
+            Spacer()
             HStack {
-                Button(action: {
-                    emojiCount += 1
-                }, label: {
-                    VStack {
-                        Text("Add")
-                        Text("Card")
-                    }
-                })
+                removeCardView
                 Spacer()
-                Button(action: {
-                    emojiCount -= 1
-                }, label: {
-                    VStack {
-                        Text("Remove")
-                        Text("Card")
-                    }
-                })
+                addCardView
             }
             .padding(.horizontal)
         }
         .padding(.horizontal)
         .foregroundColor(.red)
+    }
+    
+    var removeCardView: some View {
+        Button(action: removeCardAction , label: {
+            Image(systemName: "minus.circle")
+                .font(.largeTitle)
+        })
+    }
+    
+    var addCardView: some View {
+        Button(action: addCardAction , label: {
+            Image(systemName: "plus.circle")
+                .font(.largeTitle)
+        })
+    }
+    
+    private func removeCardAction() -> Void {
+        emojiCount -= 1
+    }
+    
+    private func addCardAction() -> Void {
+        emojiCount += 1
     }
 }
 
@@ -74,7 +83,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
             .previewDevice("iPhone 12 mini")
             .preferredColorScheme(.light)
-            
+        
     }
 }
 
