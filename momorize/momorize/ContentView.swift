@@ -15,13 +15,13 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            HStack {
+            LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
                 ForEach(emojis[0..<emojiCount],
                         id: \.self) { emoji in
                     CardView(content: emoji)
                 }
             }
-            .padding(.horizontal)
+            .foregroundColor(.red)
             Spacer()
             HStack {
                 removeCardView
@@ -32,7 +32,6 @@ struct ContentView: View {
             .padding(.horizontal)
         }
         .padding(.horizontal)
-        .foregroundColor(.red)
     }
     
     var removeCardView: some View {
