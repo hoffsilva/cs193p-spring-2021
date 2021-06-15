@@ -21,13 +21,23 @@ struct ContentView: View {
 }
 
 struct CardView: View {
+    var isFaceUp: Bool = false
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(lineWidth: 3)
-            Text("✈️")
-                .font(.largeTitle)
-                .padding()
+            if isFaceUp {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill()
+                    .foregroundColor(.white)
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(lineWidth: 3)
+                Text("✈️")
+                    .font(.largeTitle)
+                    .padding()
+            } else {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill()
+                    .foregroundColor(.red)
+            }
         }
     }
 }
@@ -35,5 +45,12 @@ struct CardView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewDevice("iPhone 12 mini")
+            .preferredColorScheme(.dark)
+        ContentView()
+            .previewDevice("iPhone 12 mini")
+            .preferredColorScheme(.light)
+            
     }
 }
+
