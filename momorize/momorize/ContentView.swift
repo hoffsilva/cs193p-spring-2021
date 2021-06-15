@@ -16,16 +16,19 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
+                ForEach(emojis[0..<emojiCount],
+                        id: \.self) { emoji in
                     CardView(content: emoji)
                 }
             }
+            .padding(.horizontal)
             Spacer()
             HStack {
                 removeCardView
                 Spacer()
                 addCardView
             }
+            .font(.largeTitle)
             .padding(.horizontal)
         }
         .padding(.horizontal)
@@ -35,23 +38,25 @@ struct ContentView: View {
     var removeCardView: some View {
         Button(action: removeCardAction , label: {
             Image(systemName: "minus.circle")
-                .font(.largeTitle)
         })
     }
     
     var addCardView: some View {
         Button(action: addCardAction , label: {
             Image(systemName: "plus.circle")
-                .font(.largeTitle)
         })
     }
     
     private func removeCardAction() -> Void {
-        emojiCount -= 1
+        if emojiCount > 1 {
+            emojiCount -= 1
+        }
     }
     
     private func addCardAction() -> Void {
-        emojiCount += 1
+        if emojiCount < emojis.count {
+            emojiCount += 1
+        }
     }
 }
 
