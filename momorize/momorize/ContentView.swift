@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             ScrollView {
-                LazyVGrid(columns: [GridItem(), GridItem(), GridItem()]) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 65))]) {
                     ForEach(emojis[0..<emojiCount],
                             id: \.self) { emoji in
                         CardView(content: emoji)
